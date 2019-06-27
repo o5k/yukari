@@ -1,3 +1,4 @@
+![Banner](https://kagari.moe/outer_assets/yukari/banner.png)
 # Yukari _(結月ゆかり)_
 ### Earthquake and Tsunami warnings for Discord - Discordに緊急地震速報と津波警報
 A simple yet powerful bot that sends Japanese Early Earthquake Warnings, NHK earthquake reports and tsunami alerts straight to Discord with clear, beautiful graphics, and clear text-to-speech alerts powered by the [Yuzuki Yukari vocaloid](https://en.wikipedia.org/wiki/Yuzuki_Yukari). Written in node.js for the first Discord Hack Week.
