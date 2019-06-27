@@ -182,6 +182,8 @@ client.once('ready', () => {
 		const args = message.content.slice(CONFIG.prefix.length).split(/ +/);
 		const command = args.shift().toLowerCase();
 
+		console.log(`-> ${ message.guild.name } -> ${ message.author.username }#${ message.author.discriminator } -> ${ message.channel.name || 'unnamed?' }: ${ message.content }`);
+
 		switch (command) {
 		case 'config':
 			if (!gmember.permissions.has('ADMINISTRATOR')) {
@@ -350,8 +352,16 @@ client.once('ready', () => {
 		}
 	});
 
+	client.on('guildCreate', (guild) => {
+		console.log(`Joined new guild ${ guild.name }!`);
+	});
+	client.on('guildDelete', (guild) => {
+		console.log(`Removed from guild ${ guild.name }!`);
+	});
+
 	setInterval(() => {
 		Broadcaster.CheckFlush(client);
+		console.log(`${ client.guilds.size } guilds - ${ client.voiceConnections.size } connections`);
 	}, 10000);
 });
 
