@@ -1,0 +1,33 @@
+{
+  "name": "yukari",
+  "version": "1.0.0",
+  "description": "Earthquake and Tsunami alerts for Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "osk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/o5k/yukari.git"
+  },
+  "keywords": [ "discord", "bots", "eew", "earthquake", "tsunami" ],
+  "bugs": {
+    "url": "https://github.com/o5k/yukari/issues"
+  },
+  "homepage": "https://github.com/o5k/yukari",
+  "dependencies": {
+    "@discordjs/uws": "^11.149.1",
+    "discord.js": "^11.5.1",
+    "encoding": "^0.1.12",
+    "erlpack": "github:hammerandchisel/erlpack",
+    "gm": "^1.23.1",
+    "node-opus": "^0.3.2",
+    "request": "^2.88.0",
+    "sequelize": "^5.8.12",
+    "sodium": "^3.0.2",
+    "sqlite3": "^4.0.9",
+    "xml2js": "^0.4.19"
+  }
+}

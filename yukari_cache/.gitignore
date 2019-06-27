@@ -1,0 +1,5 @@
+# Ignore everything in this directory, to prevent uploading cache files
+*
+# Except, of course, this file and the README
+!.gitignore
+!README.md

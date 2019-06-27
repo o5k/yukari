@@ -1,0 +1,30 @@
+{
+	"botmasters": [ "Your User ID" ],
+	"token": "Your Bot Token",
+	"prefix": "%y ",
+	"niedImageTempPath": "temp/",
+	"niedImageLocalPath": "Your Image Local Path",
+	"niedImagePublicPath": "Your Image Public Path",
+	"emojiMap": {
+		"1": "<:shindo1:emoji_id>",
+		"2": "<:shindo2:emoji_id>",
+		"3": "<:shindo3:emoji_id>",
+		"4": "<:shindo4:emoji_id>",
+		"5-": "<:shindo5lower:emoji_id>",
+		"5+": "<:shindo5upper:emoji_id>",
+		"6-": "<:shindo6lower:emoji_id>",
+		"6+": "<:shindo6upper:emoji_id>",
+		"7": "<:shindo7:emoji_id>"
+	},
+	"messageIcons": {
+		"low": "Message Icons Path",
+		"medium": "Message Icons Path",
+		"high": "Message Icons Path"
+	},
+	"yukariCache": "yukari_cache/",
+	"yukariTempPath": "temp/",
+	"presence": {
+		"action": "WATCHING",
+		"game": "for earthquakes"
+	}
+}

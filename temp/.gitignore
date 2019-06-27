@@ -1,0 +1,5 @@
+# Ignore everything in this directory, to prevent uploading temporary files
+*
+# Except, of course, this file and the README
+!.gitignore
+!README.md
