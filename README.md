@@ -1,6 +1,9 @@
+![Banner](https://kagari.moe/outer_assets/yukari/banner.png)
 # Yukari _(結月ゆかり)_
 ### Earthquake and Tsunami warnings for Discord - Discordに緊急地震速報と津波警報
 A simple yet powerful bot that sends Japanese Early Earthquake Warnings, NHK earthquake reports and tsunami alerts straight to Discord with clear, beautiful graphics, and clear text-to-speech alerts powered by the [Yuzuki Yukari vocaloid](https://en.wikipedia.org/wiki/Yuzuki_Yukari). Written in node.js for the first Discord Hack Week.
+
+### [Demonstration Video](https://kagari.moe/outer_assets/yukari/example.mp4)
 
 ---
 
@@ -29,6 +32,7 @@ To **update** the configuration:
 where `<key>` is the configuration item you want to change, and `<value>` the value you wish to set it to.
 
 Here are the configuration keys:
+
 |Key|Description|Type|
 |--|--|--|
 |`use_nhk`|Whether to receive NHK earthquake reports. They are usually late, but give detailed maps and information on the finished earthquake.|boolean|
@@ -54,6 +58,7 @@ Here are the configuration keys:
 ### Setup
 Clone the repo and type `npm install` to install the embedded dependencies.
 Now set up the `config.json`:
+
 |Key|Description|
 |--|--|
 |`botmasters`|An array of user IDs of people who have full access over the bot.|
