@@ -30,6 +30,7 @@ To **update** the configuration:
 where `<key>` is the configuration item you want to change, and `<value>` the value you wish to set it to.
 
 Here are the configuration keys:
+
 |Key|Description|Type|
 |--|--|--|
 |`use_nhk`|Whether to receive NHK earthquake reports. They are usually late, but give detailed maps and information on the finished earthquake.|boolean|
@@ -55,6 +56,7 @@ Here are the configuration keys:
 ### Setup
 Clone the repo and type `npm install` to install the embedded dependencies.
 Now set up the `config.json`:
+
 |Key|Description|
 |--|--|
 |`botmasters`|An array of user IDs of people who have full access over the bot.|
