@@ -39,13 +39,13 @@ Here are the configuration keys:
 |`use_nied`|Whether to receive NIED real-time warnings. These are the heart of the Japanese earthquake system, as they are instant. Especially in the case of large earthquakes, these may be relatively spammy, but the speed of them pays off.|boolean|
 |`use_tsunami`|Whether to receive tsunami warnings. Due to insufficient knowledge on how the API for these functions, a tsunami alert only shows the map of the tsunami, no wave heights. They are semi-instant.|boolean|
 |`min_shindo`|The minimum seismic intensity required to show alerts. If you don't want to hear about the countless shindo-1 earthquakes, set it to something high, but if you're an enthusiast, you may set this to `1` to receive all alerts.|string (`1`, `2`, `3`, `4`, `5-`, `5+`, `6-`, `6+` or `7`)|
-|`ignore_unknown`|Whether to ignore earthquakes of yet-to-be-known intensity. Generally, only very intense earthquakes get reported before knowing their intensity, so it may be worth it to keep this on. (`min_shindo` does not impact alerts with an unknown intensity.)|boolean|
+|`ignore_unknown`|Whether to ignore earthquakes of yet-to-be-known intensity. Generally, only very intense earthquakes get reported before knowing their intensity, so it may be worth it to keep this set to `false`. (`min_shindo` does not impact alerts with an unknown intensity.)|boolean|
 |`use_text`|Whether to send alerts as text. Turn this off to not receive _any_ text alerts anywhere in your server.|boolean|
 |`alert_room`|The channel ID to send text alerts to. Set this to `auto` to let Yukari decide (usually the room that join messages appear in).|a channel ID or `auto`|
 |`use_voice`|Whether to send alerts as voice messages. Turn this off to not receive _any_ voice alerts anywhere in your server.|boolean|
 |`alert_voice`|The channel ID to send voice alerts to. Set this to `auto` to let Yukari decide (usually the room that the most users are in). Yukari won't join voice channels nobody is in.|a channel ID or `auto`|
 |`admin_only`|Do not allow anybody to use any bot commands. If set to `false`, users may still use the `nied` and `ping` commands.|boolean|
-|`mention`|Who to mention in text alerts. Set to `nobody` to not alert anyone, to `everyone` to alert @everyone, or to a role ID to alert that role.|a role ID, `everyone` or `nobody`|
+|`mention`|Who to mention in text alerts. Set to `nobody` to not mention anyone, to `everyone` to mention @everyone, or to a role ID to mention that role.|a role ID, `everyone` or `nobody`|
 
 # Instructions for Developers
 ### Requirements
@@ -54,6 +54,7 @@ Here are the configuration keys:
 * ffmpeg
 * A web server (for example, `nginx`)
 * A bot token for Discord
+* An accurate system time (the NIED alerts require a synchronized system clock)
 
 ### Setup
 Clone the repo and type `npm install` to install the embedded dependencies.
@@ -90,7 +91,7 @@ You can check whether the bot is working with the command `%y ping` (it should t
 
 # Additional information for Users
 ### Reliability and Liability
-This bot is meant as a helpful tool. There are **no warranties associated with this tool**. That means: if the bot doesn't work and a 10m tsunami hits your house, or you flee because the bot tells you a 10m tsunami is coming, the bot is not responsible. Official sources ALWAYS take precedence over Yukari. When in doubt, check those.
+This bot is meant as a helpful tool. There are **no warranties associated with this tool**. That means: if the bot doesn't work and a 10m tsunami hits your house, or you flee because the bot erroneously tells you a 10m tsunami is coming, the bot is not responsible. Official sources ALWAYS take precedence over Yukari. When in doubt, check those.
 
 ### Full commands listing
 ```
