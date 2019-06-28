@@ -55,6 +55,11 @@ Here are the configuration keys:
 * A web server (for example, `nginx`)
 * A bot token for Discord
 * An accurate system time (the NIED alerts require a synchronized system clock)
+* Some dependencies require additional packages installed. While testing on a fresh DigitalOcean droplet I had to install these:
+  * libtool (required by sodium) (`apt install libtool`)
+  * sqlite3 (required by sequelize) (`npm install sqlite3`)
+    * node-pre-gyp (required by sqlite3) (`apt install node-pre-gyp`)
+  * Depending on your setup, you might need to install node-opus manually (`npm install node-opus`), else voice will not work.
 
 ### Setup
 Clone the repo and type `npm install` to install the embedded dependencies.
@@ -85,9 +90,9 @@ If you wish to display seismic intensity as emoji, you must create or have a ser
 If you do not wish to use emoji, you can also set textual representations (for example: `"1": "Shindo One"`).
 
 ### Starting the bot
-Now that you're all set up, you can start the bot with `node .`. It's recommended to use `forever`, to ensure the bot is always ready to alert you.
+Now that you're all set up, you can start the bot with `node .`. It's recommended to use `forever`, to ensure the bot is always ready to alert you. Your bot will become available with the invite `https://discordapp.com/api/oauth2/authorize?client_id= YOUR CLIENT ID &scope=bot&permissions=53923136`.
 
-You can check whether the bot is working with the command `%y ping` (it should tell you that the three endpoints have been checked a few milliseconds ago), and `%y nied` (it should show a neat map of current seismic activity).
+You can check whether the bot is working with the command `%y ping` (it should tell you that the three endpoints have been checked a few milliseconds ago), and `%y nied` (it should show a neat map of current seismic activity). The first time, it may take a while for Yukari TTS to play longer samples. As the bot gets used, its cache will develop.
 
 # Additional information for Users
 ### Reliability and Liability
