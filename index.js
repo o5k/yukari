@@ -6,9 +6,13 @@ const CreateNIEDChart = require('./nied-chart.js');
 const Yukari = require('./yukari.js');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const Git = require('nodegit');
 const Broadcaster = require('./broadcaster.js');
 
 client.once('ready', () => {
+	let commandCount = 0;
+	let eventCount = 0;
+
 	DB.init();
 	client.user.setPresence({ game: { name: CONFIG.presence.game, type: CONFIG.presence.action }, status: 'online' });
 	Broadcaster.FlushConnections(client);
@@ -65,6 +69,8 @@ client.once('ready', () => {
 		Yukari(`震源地は${d.epicenter || '不明'}です。`, (yukariPath) => {
 			Broadcaster.RequestBroadcastAudio(client, { type: 'nhk', shindo: d.max_shindo, scope }, yukariPath, 4000, 'epicenter');
 		}, 15000);
+
+		eventCount++;
 	});
 
 	Monitor.on('nied_start', (d, scope, test) => {
@@ -105,6 +111,8 @@ client.once('ready', () => {
 		Yukari(`震源地は${d.epicenter || '不明'}です。`, (yukariPath) => {
 			Broadcaster.RequestBroadcastAudio(client, { type: 'nied', shindo: ConfigSanitizer.ShindoTrans(d.max_shindo), scope }, yukariPath, 4500, 'epicenter');
 		}, 16000);
+
+		eventCount++;
 	});
 
 	Monitor.on('nied_continue', (d, scope, test) => {
@@ -139,6 +147,8 @@ client.once('ready', () => {
 				Broadcaster.RequestBroadcastAudio(client, { type: 'nied', shindo: ConfigSanitizer.ShindoTrans(d.max_shindo.new), scope }, yukariPath, 3500, 'shindo');
 			}, 2000);
 		}
+
+		eventCount++;
 	});
 
 	Monitor.on('tsunami', (d, scope, test) => {
@@ -165,6 +175,8 @@ client.once('ready', () => {
 		Yukari('津波警報です！津波警報です！すぐ逃げて下さい！', (yukariPath) => {
 			Broadcaster.RequestBroadcastAudio(client, { type: 'tsunami', scope }, yukariPath, 6000, 'intro');
 		}, 8000);
+
+		eventCount++;
 	});
 
 	client.on('message', (message) => {
@@ -182,6 +194,7 @@ client.once('ready', () => {
 		const args = message.content.slice(CONFIG.prefix.length).split(/ +/);
 		const command = args.shift().toLowerCase();
 
+		commandCount++;
 		console.log(`-> ${ message.guild.name } -> ${ message.author.username }#${ message.author.discriminator } -> ${ message.channel.name || 'unnamed?' }: ${ message.content }`);
 
 		switch (command) {
@@ -257,6 +270,24 @@ client.once('ready', () => {
 						title: 'Pong!',
 						description: `Last NHK ping: ${ dn - pings.nhk }ms ago\nLast NIED ping: ${ dn - pings.nied }ms ago\nLast tsunami alert ping: ${ dn - pings.tsunami }ms ago`,
 					},
+				});
+			});
+			break;
+		case 'stats':
+			DB.get(message.guild.id).then((opts) => {
+				if (opts.admin_only && !gmember.permissions.has('ADMINISTRATOR')) {
+					return;
+				}
+
+				Git.Repository.open(process.cwd()).then((repo) => {
+					return repo.getHeadCommit();
+				}).then((commit) => {
+					message.channel.send('', {
+						embed: {
+							title: 'Yukari by osk',
+							description: `Last commit: [${ commit.sha().substring(0, 7) }] _${ commit.message() }_ by **${ commit.author().name() }**\nGuilds: **${ client.guilds.size }**\nConnections: **${ client.voiceConnections.size }**\nReceived commands this session: **${ commandCount }**\nReceived events this session: **${ eventCount }**`,
+						},
+					});
 				});
 			});
 			break;

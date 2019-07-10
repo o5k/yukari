@@ -12,7 +12,13 @@
     "type": "git",
     "url": "https://github.com/o5k/yukari.git"
   },
-  "keywords": [ "discord", "bots", "eew", "earthquake", "tsunami" ],
+  "keywords": [
+    "discord",
+    "bots",
+    "eew",
+    "earthquake",
+    "tsunami"
+  ],
   "bugs": {
     "url": "https://github.com/o5k/yukari/issues"
   },
@@ -24,6 +30,7 @@
     "erlpack": "github:hammerandchisel/erlpack",
     "gm": "^1.23.1",
     "node-opus": "^0.3.2",
+    "nodegit": "^0.24.3",
     "request": "^2.88.0",
     "sequelize": "^5.8.12",
     "sodium": "^3.0.2",

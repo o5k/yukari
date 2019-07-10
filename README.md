@@ -116,6 +116,10 @@ Show the current map of seismic activity from NIED.
 ```
 Show when data was last received.
 ```
+%y stats
+```
+Show Yukari stats (commit, guild count, event count, etc.).
+```
 %y test <local|global> <type> [shindo]
 ```
 **server admin only** Play a test alert. The `global` option is only available to the botmasters. Type may be `nhk`, `nied_start`, `nied_continue`, `tsunami` or `displayrun`. The optional argument `shindo` sets the seismic intensity the test will display as (only applicable to `nhk`, `nied_start` and `nied_continue`).
