@@ -64,14 +64,14 @@ function composeImage(pga, pswave, estshindo, tempPath, outputPath, success, fai
 			}
 			else {
 				gm(tempPath)
-					.composite(pswave)
+					.composite(estshindo)
 					.write(tempPath, function(err) {
 						if (err) {
 							failure(err);
 						}
 						else {
 							gm(tempPath)
-								.composite(estshindo)
+								.composite(pswave)
 								.write(outputPath, function(err) {
 									if (err) {
 										failure(err);
