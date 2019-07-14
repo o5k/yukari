@@ -120,13 +120,13 @@ function composeFinalGIF(wildPath, outputPath, success, failure) {
 	gm(wildPath)
 		.delay(30)
 		.write(outputPath, function(err) {
-				if (err) {
-					failure(err);
-				}
-				else {
-					success();
-				}
-			});
+			if (err) {
+				failure(err);
+			}
+			else {
+				success();
+			}
+		});
 }
 
 function composeTotal(pga, pswave, estshindo, tempPath, tempPathEst, tempPathEst2, tempPathNoEst, wildPath, outputPath, success, failure) {
