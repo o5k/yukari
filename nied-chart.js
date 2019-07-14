@@ -19,7 +19,6 @@ const CreateChart = function(success, failure) {
 };
 
 function tryGetGraph(jptime, success, failure) {
-	jptime = "20190714222422";
 	const tempPath = `${CONFIG.niedImageTempPath}${jptime}compose.png`;
 	const tempPathEst = `${CONFIG.niedImageTempPath}${jptime}composewEST.png`;
 	const tempPathEst2 = `${CONFIG.niedImageTempPath}${jptime}composewEST2.png`;
