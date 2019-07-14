@@ -58,6 +58,7 @@ const Yukari = function(text, success, minimumDelay) {
 									fs.createReadStream(`${tempPath}`).pipe(fs.createWriteStream(cachePath));
 
 									setTimeout(() => {
+										fs.unlink(tempPath, ()=>{});
 										success(cachePath);
 									}, Math.max(0, minimumDelay - (Date.now() - startTime)));
 								});
