@@ -19,19 +19,24 @@ const CreateChart = function(success, failure) {
 };
 
 function tryGetGraph(jptime, success, failure) {
+	jptime = "20190714222422";
 	const tempPath = `${CONFIG.niedImageTempPath}${jptime}compose.png`;
-	const finalPath = `${CONFIG.niedImageLocalPath}${jptime}.png`;
-	const publicPath = `${CONFIG.niedImagePublicPath}${jptime}.png`;
+	const tempPathEst = `${CONFIG.niedImageTempPath}${jptime}composewEST.png`;
+	const tempPathEst2 = `${CONFIG.niedImageTempPath}${jptime}composewEST2.png`;
+	const tempPathNoEst = `${CONFIG.niedImageTempPath}${jptime}composewNOEST.png`;
+	const wildPath = `${CONFIG.niedImageTempPath}${jptime}composew*.png`;
+	const finalPath = `${CONFIG.niedImageLocalPath}${jptime}.gif`;
+	const publicPath = `${CONFIG.niedImagePublicPath}${jptime}.gif`;
 
 	if (fs.existsSync(finalPath)) {
-		success(finalPath);
+		success(publicPath);
 		return;
 	}
 
 	downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/acmap_s/${jptime.substring(0, 8)}/${jptime}.acmap_s.gif`, (pga) => {
 		downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/PSWaveImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (pswave) => {
 			downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/EstShindoImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (estshindo) => {
-				composeImage(pga, pswave, estshindo, tempPath, finalPath, () => {
+				composeTotal(pga, pswave, estshindo, tempPath, tempPathEst, tempPathEst2, tempPathNoEst, wildPath, finalPath, () => {
 					fs.unlink(pga, ()=>{});
 					if (pswave !== 'assets/blank.gif') {
 						fs.unlink(pswave, ()=>{});
@@ -40,6 +45,9 @@ function tryGetGraph(jptime, success, failure) {
 						fs.unlink(estshindo, ()=>{});
 					}
 					fs.unlink(tempPath, ()=>{});
+					fs.unlink(tempPathEst, ()=>{});
+					fs.unlink(tempPathEst2, ()=>{});
+					fs.unlink(tempPathNoEst, ()=>{});
 					success(publicPath);
 				}, (err) => {
 					failure(err);
@@ -55,7 +63,29 @@ function tryGetGraph(jptime, success, failure) {
 	});
 }
 
-function composeImage(pga, pswave, estshindo, tempPath, outputPath, success, failure) {
+function composeNoEst(pga, pswave, tempPath, outputPath, success, failure) {
+	gm('assets/niedbg.png')
+		.composite(pga)
+		.write(tempPath, function(err) {
+			if (err) {
+				failure(err);
+			}
+			else {
+				gm(tempPath)
+					.composite(pswave)
+					.write(outputPath, function(err) {
+						if (err) {
+							failure(err);
+						}
+						else {
+							success();
+						}
+					});
+			}
+		});
+}
+
+function composeEst(pga, pswave, estshindo, tempPath, outputPath, outputPath2, success, failure) {
 	gm('assets/niedbg.png')
 		.composite(pga)
 		.write(tempPath, function(err) {
@@ -77,6 +107,7 @@ function composeImage(pga, pswave, estshindo, tempPath, outputPath, success, fai
 										failure(err);
 									}
 									else {
+										fs.copyFileSync(outputPath, outputPath2);
 										success();
 									}
 								});
@@ -84,6 +115,35 @@ function composeImage(pga, pswave, estshindo, tempPath, outputPath, success, fai
 					});
 			}
 		});
+}
+
+function composeFinalGIF(wildPath, outputPath, success, failure) {
+	gm(wildPath)
+		.delay(30)
+		.write(outputPath, function(err) {
+				if (err) {
+					failure(err);
+				}
+				else {
+					success();
+				}
+			});
+}
+
+function composeTotal(pga, pswave, estshindo, tempPath, tempPathEst, tempPathEst2, tempPathNoEst, wildPath, outputPath, success, failure) {
+	composeEst(pga, pswave, estshindo, tempPath, tempPathEst, tempPathEst2, () => {
+		composeNoEst(pga, pswave, tempPath, tempPathNoEst, () => {
+			composeFinalGIF(wildPath, outputPath, () => {
+				success();
+			}, (err) => {
+				failure(err);
+			});
+		}, (err) => {
+			failure(err);
+		});
+	}, (err) => {
+		failure(err);
+	});
 }
 
 function downloadImage(imagePath, success, failure) {
