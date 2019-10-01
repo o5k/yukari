@@ -242,7 +242,7 @@ let lastMag = 0;
 let lastDep = null;
 let lastReg = null;
 function NIED(success, alertCallback, continueCallback) {
-	request(`http://www.kmoni.bosai.go.jp/new/webservice/hypo/eew/${GetJPTime()}.json`, function(error, response, body) {
+	request(`http://www.kmoni.bosai.go.jp/webservice/hypo/eew/${GetJPTime()}.json`, function(error, response, body) {
 		if (error) {
 			console.log(error);
 			return;
