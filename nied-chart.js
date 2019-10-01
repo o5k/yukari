@@ -32,9 +32,9 @@ function tryGetGraph(jptime, success, failure) {
 		return;
 	}
 
-	downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/acmap_s/${jptime.substring(0, 8)}/${jptime}.acmap_s.gif`, (pga) => {
-		downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/PSWaveImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (pswave) => {
-			downloadImage(`http://www.kmoni.bosai.go.jp/new/data/map_img/EstShindoImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (estshindo) => {
+	downloadImage(`http://www.kmoni.bosai.go.jp/data/map_img/RealTimeImg/acmap_s/${jptime.substring(0, 8)}/${jptime}.acmap_s.gif`, (pga) => {
+		downloadImage(`http://www.kmoni.bosai.go.jp/data/map_img/PSWaveImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (pswave) => {
+			downloadImage(`http://www.kmoni.bosai.go.jp/data/map_img/EstShindoImg/eew/${jptime.substring(0, 8)}/${jptime}.eew.gif`, (estshindo) => {
 				composeTotal(pga, pswave, estshindo, tempPath, tempPathEst, tempPathEst2, tempPathNoEst, wildPath, finalPath, () => {
 					fs.unlink(pga, ()=>{});
 					if (pswave !== 'assets/blank.gif') {
