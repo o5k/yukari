@@ -8,7 +8,6 @@ A simple yet powerful bot that sends Japanese Early Earthquake Warnings, NHK ear
 
 ---
 
-[![Invite Link](https://kagari.moe/outer_assets/yukari/invite.png)](https://discordapp.com/api/oauth2/authorize?client_id=592766893589397504&scope=bot&permissions=53923136)
 [![Instructions for Server Owners](https://kagari.moe/outer_assets/yukari/server.png)](#Instructions-for-Server-Owners)
 [![Instructions for Developers](https://kagari.moe/outer_assets/yukari/devs.png)](#Instructions-for-Developers)
 [![Additional information for Users](https://kagari.moe/outer_assets/yukari/users.png)](#Additional-information-for-Users)
@@ -17,7 +16,7 @@ A simple yet powerful bot that sends Japanese Early Earthquake Warnings, NHK ear
 ---
 
 # Instructions for Server Owners
-To add Yukari to your server, just invite her with the above link. Yukari will immediately begin alerting using text and audio on earthquakes with a seismic intensity of Shindo 3 or higher.
+To add Yukari to your server, just invite her. Yukari will immediately begin alerting using text and audio on earthquakes with a seismic intensity of Shindo 3 or higher.
 
 ### Configuration
 Of course, you might want to change this behaviour. Users with the `Administrator` permission may edit Yukari's config easily using the command `%y config`. A configuration applies server-wide.
