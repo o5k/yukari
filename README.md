@@ -1,3 +1,5 @@
+### This repository is no longer maintained. If you are interested in this project, please let me know and I may consider working on it (or passing on ownership).
+
 ![Banner](https://kagari.moe/outer_assets/yukari/banner.png)
 [![CodeFactor](https://www.codefactor.io/repository/github/o5k/yukari/badge)](https://www.codefactor.io/repository/github/o5k/yukari) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/o5k/yukari/blob/master/LICENSE.md)
 # Yukari _(結月ゆかり)_
